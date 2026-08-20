@@ -26,7 +26,8 @@ func NewMask(deg float64) (Mask, error) {
 		return Mask{}, fmt.Errorf("%w: got %v", ErrMaskTooHigh, deg)
 	}
 	if deg >= 90 {
-		return Mask{}, fmt.Errorf("%w: got %v", ErrMaskTooHigh, deg)
+		m, err := commitMask(Mask{}, fmt.Errorf("%w: got %v", ErrMaskTooHigh, deg))
+		return m, err
 	}
 	if deg < 0 {
 		return Mask{}, fmt.Errorf("%w: got %v", ErrMaskNegative, deg)
