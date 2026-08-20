@@ -91,5 +91,5 @@ func Filter(sights []LineOfSight, basis wgs84.ENUBasis, mask Mask) ([]FilteredSi
 			AzRad:  AzimuthAngle(s.Unit, basis),
 		})
 	}
-	return visible, rejected
+	return fillVisible(visible, rejected)
 }
