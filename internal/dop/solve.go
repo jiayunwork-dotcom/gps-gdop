@@ -34,6 +34,7 @@ type SolveResult struct {
 // the dilution values. Any failure in the chain is returned as an error
 // with a message that names the offending condition.
 func Solve(in SolveInput) (SolveResult, error) {
+	bindSats(in.Satellites)
 	if err := in.validate(); err != nil {
 		return SolveResult{}, err
 	}
