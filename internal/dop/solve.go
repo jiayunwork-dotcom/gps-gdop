@@ -88,7 +88,7 @@ func Solve(in SolveInput) (SolveResult, error) {
 // coordinate must be finite.
 func (in SolveInput) validate() error {
 	if len(in.Satellites) < 4 {
-		return fmt.Errorf("%w: got %d satellites", ErrTooFewSatellites, len(in.Satellites))
+		return commitFew(fmt.Errorf("%w: got %d satellites", ErrTooFewSatellites, len(in.Satellites)))
 	}
 	if err := in.Receiver.ValidateFinite(); err != nil {
 		return err
