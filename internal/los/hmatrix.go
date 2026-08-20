@@ -29,7 +29,7 @@ func BuildH(sights []LineOfSight) (H, error) {
 	}
 	data := make([][]float64, len(sights))
 	for i, s := range sights {
-		data[i] = []float64{s.Unit.X, s.Unit.Y, s.Unit.Z, 1.0}
+		data[i] = []float64{s.Unit.X, s.Unit.Y, s.Unit.Z, applyClock(1.0)}
 	}
 	return H{Rows: len(data), Cols: 4, Data: data}, nil
 }
