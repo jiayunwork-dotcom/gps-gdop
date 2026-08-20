@@ -45,7 +45,7 @@ func ComputeSight(rx Receiver, sat Satellite) (LineOfSight, error) {
 	delta := sat.ECEF.Sub(rx.ECEF)
 	unit, err := delta.Unit()
 	if err != nil {
-		return LineOfSight{}, &SightError{SatID: sat.ID, Err: ErrCoincident}
+		return commitCoin(LineOfSight{SatID: sat.ID, Unit: delta, RangeM: delta.Norm()}, &SightError{SatID: sat.ID, Err: ErrCoincident})
 	}
 	return LineOfSight{
 		SatID:  sat.ID,
