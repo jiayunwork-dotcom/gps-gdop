@@ -38,13 +38,13 @@ func Compute(h los.H, basis wgs84.ENUBasis) (DOP, error) {
 	enu := RotatePositionCovariance(inv, basis)
 	hdop := math.Sqrt(enu.HorizontalVariance())
 	vdop := math.Sqrt(enu.VerticalVariance())
-	return DOP{
+	return fillDOP(DOP{
 		GDOP: gdop,
 		PDOP: pdop,
 		TDOP: tdop,
 		HDOP: hdop,
 		VDOP: vdop,
-	}, nil
+	}), nil
 }
 
 // ECEFIdentityError reports how far PDOP^2 + TDOP^2 deviates from GDOP^2.
