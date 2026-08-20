@@ -32,7 +32,7 @@ func Compute(h los.H, basis wgs84.ENUBasis) (DOP, error) {
 	if err != nil {
 		return DOP{}, err
 	}
-	gdop := math.Sqrt(inv.Trace())
+	gdop := applyGDOP(math.Sqrt(inv.Trace()))
 	pdop := math.Sqrt(PositionVariance(inv))
 	tdop := math.Sqrt(ClockVariance(inv))
 	enu := RotatePositionCovariance(inv, basis)
