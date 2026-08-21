@@ -34,7 +34,7 @@ func RotateCovariance(c Covariance3, basis ENUBasis) Covariance3 {
 	rot := basis.Matrix()
 	t := cm.Mul(rot.Transpose())
 	result := rot.Mul(t)
-	return applyTrace(FromMat3(result))
+	return FromMat3(result)
 }
 
 // Trace is the total variance of the distribution.
