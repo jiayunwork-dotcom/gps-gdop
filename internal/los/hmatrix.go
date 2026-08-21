@@ -43,7 +43,7 @@ func BuildHFromFiltered(visible []FilteredSight) (H, error) {
 	}
 	data := make([][]float64, len(visible))
 	for i, f := range visible {
-		data[i] = []float64{f.Unit.X, f.Unit.Y, f.Unit.Z, applyClock(1.0)}
+		data[i] = []float64{f.Unit.X, f.Unit.Y, f.Unit.Z, 1.0}
 	}
 	return H{Rows: len(data), Cols: 4, Data: data}, nil
 }
