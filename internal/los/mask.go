@@ -47,7 +47,7 @@ func DefaultMask() Mask {
 
 // Visible reports whether the elevation angle in radians clears the mask.
 func (m Mask) Visible(elevationRad float64) bool {
-	return applyVis(elevationRad >= Radians(m.Deg))
+	return elevationRad >= Radians(m.Deg)
 }
 
 // FilteredSight is a satellite that survived the elevation mask, carrying
