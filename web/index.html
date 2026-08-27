@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>gps-gdop · satellite geometry DOP</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header>
+  <h1>gps-gdop</h1>
+  <p>输入接收机概略位置与卫星 ECEF 坐标，由同一法矩阵 H<sup>T</sup>H 算出 GDOP / PDOP / TDOP / HDOP / VDOP，并在天顶图上画出各卫星的方位与仰角。</p>
+</header>
+
+<section class="panel">
+  <h2>示例</h2>
+  <select id="exampleSelect">
+    <option value="four-good">four-good (四星分散，GDOP 小)</option>
+    <option value="four-poor">four-poor (近共面差几何，GDOP 大)</option>
+  </select>
+  <button id="loadExample">加载示例</button>
+</section>
+
+<section class="panel">
+  <h2>输入</h2>
+  <div class="row">
+    <label>接收机 X (m) <input id="rxX" type="number" step="any" value="0"></label>
+    <label>接收机 Y (m) <input id="rxY" type="number" step="any" value="0"></label>
+    <label>接收机 Z (m) <input id="rxZ" type="number" step="any" value="0"></label>
+    <label>仰角截止 (deg) <input id="mask" type="number" step="any" value="5"></label>
+  </div>
+  <label for="satList">卫星 ECEF（每行一个：id, x, y, z）</label>
+  <textarea id="satList" rows="8" spellcheck="false"></textarea>
+  <div class="row">
+    <button id="computeDop">计算 DOP (POST /api/dop)</button>
+    <button id="computeSky">计算天顶图 (POST /api/sky)</button>
+  </div>
+</section>
+
+<section class="panel" id="dopPanel" hidden>
+  <h2>DOP 结果</h2>
+  <table id="dopTable">
+    <thead><tr><th>量</th><th>值</th></tr></thead>
+    <tbody></tbody>
+  </table>
+  <div id="dopNote"></div>
+</section>
+
+<section class="panel" id="skyPanel" hidden>
+  <h2>天顶图</h2>
+  <div id="skyWrap">
+    <svg id="skySvg" viewBox="-260 -260 520 520" width="480" height="480"></svg>
+  </div>
+  <div id="skyNote"></div>
+</section>
+
+<div id="errorBox" class="error" hidden></div>
+
+<script src="app.js"></script>
+</body>
+</html>
